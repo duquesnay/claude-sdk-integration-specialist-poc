@@ -1,0 +1,11 @@
+# Claude Agent SDK POC - Dependencies
+
+# Claude Agent SDK (custom tools framework)
+claude-agent-sdk>=0.1.0
+
+# Anthropic API client (si besoin d'appeler Claude directement)
+anthropic>=0.40.0
+
+# Testing (optionnel - tests actuels n'utilisent que stdlib)
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
