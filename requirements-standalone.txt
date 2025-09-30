@@ -1,0 +1,17 @@
+# Scope Validator - Standalone Version (No SDK required)
+#
+# Cette version fonctionne SANS dépendances externes.
+# Compatible avec Claude MAX uniquement - pas d'API payante requise.
+#
+# Pas de dépendances ! Pure Python stdlib.
+#
+# Pour installer (optionnel - juste pour avoir un venv propre):
+# python -m venv venv
+# source venv/bin/activate
+# pip install -r requirements-standalone.txt
+
+# Aucune dépendance externe requise !
+# Le code utilise uniquement:
+# - typing (stdlib)
+# - sys (stdlib)
+# - Pure Python logic

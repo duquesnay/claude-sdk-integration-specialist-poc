@@ -21,8 +21,18 @@ python check_scope.py file1 file2 ... -- "description"
 
 ## Installation
 
+### Version Standalone (Recommandée - Claude MAX uniquement)
+
+**Aucune dépendance requise !** Fonctionne avec Python stdlib uniquement.
+
 ```bash
-# Dans ce projet
+# Pas d'installation nécessaire - juste Python 3.7+
+python check_scope_standalone.py --help
+```
+
+### Version SDK (Optionnelle - si tu veux explorer le SDK)
+
+```bash
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -30,15 +40,15 @@ pip install -r requirements.txt
 
 ## Usage
 
-### CLI directe
+### CLI directe (Standalone - Recommandé)
 
 ```bash
 # Change légitime (2 fichiers CSS)
-python check_scope.py src/app.css src/theme.css -- "Fix button styling"
+python check_scope_standalone.py src/app.css src/theme.css -- "Fix button styling"
 # Exit 0 - ✅ APPROVED
 
 # Scope violation (11 fichiers)
-python check_scope.py a b c d e f g h i j k -- "Fix CSS"
+python check_scope_standalone.py a b c d e f g h i j k -- "Fix CSS"
 # Exit 1 - 🚫 BLOCKED
 ```
 
@@ -47,18 +57,20 @@ python check_scope.py a b c d e f g h i j k -- "Fix CSS"
 L'agent `@integration-specialist` appelle automatiquement :
 
 ```bash
-python ~/dev/experiments/claude-sdk-integration-specialist-test/check_scope.py <files> -- "description"
+python ~/dev/experiments/claude-sdk-integration-specialist-test/check_scope_standalone.py <files> -- "description"
 ```
 
 Si exit code 1 → agent **doit** réduire le scope.
 
-### Import Python
+**Note** : Pas besoin d'API Claude payante - l'agent utilise juste Python stdlib.
+
+### Import Python (Standalone)
 
 ```python
-from integration_specialist_tool import analyze_integration_scope_sync, ScopeViolationError
+from scope_validator import analyze_scope, ScopeViolationError
 
 try:
-    result = analyze_integration_scope_sync(
+    result = analyze_scope(
         files=["a.py", "b.py"],
         description="Fix bug"
     )
@@ -66,6 +78,8 @@ try:
 except ScopeViolationError as e:
     print(f"Blocked: {e}")
 ```
+
+**Pas de dépendances externes requises !**
 
 ## Tests
 
